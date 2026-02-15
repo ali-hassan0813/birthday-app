@@ -1,0 +1,424 @@
+/* --- Global Settings --- */
+html {
+    font-size: 18px; /* Puray page ka base size barha dya */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0f172a;
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* --- Confetti Background Fix --- */
+#confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    pointer-events: none;
+}
+
+/* --- Card & Form Styles --- */
+.card {
+    background: #1e293b;
+    padding: 40px 25px;
+    border-radius: 25px;
+    width: 85%;
+    max-width: 450px;
+    margin: auto; /* Screen ke beech mein rakhega */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+h1 {
+    font-size: 2.5rem; /* Heading bari kar di */
+    margin-bottom: 20px;
+    color: #f472b6;
+}
+
+p {
+    font-size: 1.3rem;
+    color: #cbd5e1;
+}
+
+/* --- Inputs & Buttons (Size Increased) --- */
+input {
+    width: 100%;
+    padding: 15px;
+    margin: 15px 0;
+    border: 2px solid #334155;
+    border-radius: 12px;
+    background: #0f172a;
+    color: white;
+    font-size: 1.1rem;
+    box-sizing: border-box; /* Padding handling fix */
+}
+
+button, .btn {
+    width: 100%;
+    padding: 18px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 12px;
+    background: #ec4899;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+button:hover, .btn:hover {
+    background: #db2777;
+    transform: translateY(-2px);
+}
+
+/* --- Gallery Styles --- */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 30px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.gallery img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 4px solid #1e293b;
+}
+
+/* --- Cake Page Styles --- */
+.center {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#cake {
+    font-size: 160px; /* Cake kafi bara kar dya */
+    cursor: pointer;
+    margin: 40px 0;
+    transition: transform 0.2s;
+    user-select: none;
+}
+
+#cake:active {
+    transform: scale(0.8);
+}
+
+/* --- Celebration Page --- */
+.celebration {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.balloons {
+    font-size: 80px;
+    margin: 30px 0;
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+}
+
+/* --- Helpers --- */
+.hidden {
+    display: none;
+}
+/* ---- tumhara pura purana CSS ---- */
+
+/* --- Helpers --- */
+.hidden {
+    display: none;
+}
+
+/* ====== NEW GALLERY FULL WIDTH + ANIMATION (PASTE HERE) ====== */
+
+.gallery {
+    display: flex;
+    gap: 25px;
+    padding: 40px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery img {
+    flex: 1;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    animation: fadeZoom 1.2s ease forwards;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 30px 60px rgba(236,72,153,0.5);
+}
+
+@keyframes fadeZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery {
+        flex-direction: column;
+    }
+
+    .gallery img {
+        height: 300px;
+    }
+}
+/* --- Cake Background Section --- */
+.cake-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.cake-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px) brightness(0.6);
+    z-index: 1;
+}
+
+.cake-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+/* --- Celebration Page --- */
+.celebration-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle, #1e293b, #020617);
+    overflow: hidden;
+}
+
+/* Fireworks animation */
+.fireworks::before,
+.fireworks::after {
+    content: "✨ 🎆 🎇 ✨ 🎆 🎇";
+    position: absolute;
+    width: 100%;
+    top: 30%;
+    left: 0;
+    font-size: 40px;
+    text-align: center;
+    animation: fireworks 3s infinite ease-in-out;
+    opacity: 0.8;
+}
+
+.fireworks::after {
+    top: 60%;
+    animation-delay: 1.5s;
+}
+
+@keyframes fireworks {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(0.5); opacity: 0; }
+}
+
+/* Content */
+.celebration-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.celebration-content h1 {
+    font-size: 3.2rem;
+    color: #f472b6;
+    text-shadow: 0 5px 25px rgba(0,0,0,0.8);
+}
+
+.celebration-content p {
+    font-size: 1.4rem;
+    color: #e5e7eb;
+}
+
+/* Balloons */
+.balloon-area {
+    margin-top: 40px;
+}
+
+.balloon {
+    font-size: 70px;
+    margin: 10px;
+    cursor: pointer;
+    display: inline-block;
+    animation: floatUp 4s infinite ease-in-out;
+}
+
+.balloon:nth-child(2) { animation-delay: 1s; }
+.balloon:nth-child(3) { animation-delay: 2s; }
+.balloon:nth-child(4) { animation-delay: 1.5s; }
+
+@keyframes floatUp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-40px); }
+}
+
+/* Surprise text */
+#surprise {
+    margin-top: 30px;
+    font-size: 2rem;
+    color: #fde68a;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+/* ===== Wishes Page (Cinematic Background) ===== */
+.wishes-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Background image */
+.wishes-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.45) blur(1px);
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+/* Dark overlay for readability */
+.wishes-page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(15,23,42,0.6),
+        rgba(15,23,42,0.85)
+    );
+    z-index: 1;
+}
+
+/* Content */
+.wishes-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.wishes-content h1 {
+    font-size: 3.2rem;
+    color: #f9a8d4;
+    margin-bottom: 25px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.9);
+}
+
+.wishes-content p {
+    font-size: 1.4rem;
+    line-height: 1.7;
+    color: #f8fafc;
+    margin-bottom: 35px;
+    text-shadow: 0 6px 20px rgba(0,0,0,0.8);
+}
+
+/* Button tweak */
+.wishes-content .btn {
+    padding: 16px 40px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+}
+/* ===== Mobile Height Fix ===== */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Replace 100vh with dynamic height */
+.wishes-page,
+.cake-page,
+.celebration-page {
+    min-height: 100vh;
+    min-height: 100dvh; /* mobile fix */
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+@media (max-width: 768px) {
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .wishes-content,
+    .cake-content,
+    .celebration-content {
+        padding: 16px;
+    }
+
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
+}
+

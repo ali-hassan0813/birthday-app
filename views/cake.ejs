@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cake</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Cake Background */
+        .cake-page {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            background: #000; /* dark fallback */
+        }
+        .cake-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Cake Content Center */
+        .cake-content {
+            position: relative;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #cake {
+            font-size: 100px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        /* Cake slice animation */
+        #cake.cut {
+            transform: rotate(-20deg) scale(1.1);
+        }
+
+        /* Balloons */
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50% 50% 50% 50%;
+            bottom: -100px;
+            animation: rise 6s linear infinite;
+        }
+        .balloon:nth-child(2) { background: pink; left: 20%; animation-delay: 1s; }
+        .balloon:nth-child(3) { background: yellow; left: 40%; animation-delay: 2s; }
+        .balloon:nth-child(4) { background: blue; left: 60%; animation-delay: 3s; }
+        .balloon:nth-child(5) { background: green; left: 80%; animation-delay: 4s; }
+
+        @keyframes rise {
+            0% { bottom: -100px; opacity: 0; }
+            50% { opacity: 1; }
+            100% { bottom: 100%; opacity: 0; }
+        }
+
+        .hidden { display: none; }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: gold;
+            top: 0;
+            animation: confettiFall 3s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity:1; }
+            100% { transform: translateY(600px) rotate(360deg); opacity:0; }
+        }
+
+        /* Next Button */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #ff4081;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cake-page">
+
+        <!-- Background Image: choose img1, img2, img3 -->
+        <img src="/images/img1.jpg" class="cake-bg" alt="Cake Background">
+
+        <!-- Balloons -->
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+
+        <!-- Cake Content -->
+        <div class="cake-content center">
+            <h1>🎂 Cake Cut 🎂</h1>
+
+            <div id="cake" onclick="cutCake()">🎂</div>
+
+            <p>Click on cake</p>
+
+            <a href="/celebration" id="nextBtn" class="btn hidden">Celebrate</a>
+        </div>
+
+        <!-- Happy Birthday Music -->
+        <audio id="birthdaySong" autoplay loop>
+            <source src="/audio/happy_birthday.mp3" type="audio/mpeg">
+        </audio>
+
+    </div>
+
+    <script>
+        function cutCake() {
+            const cake = document.getElementById('cake');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Cake cut animation
+            cake.classList.add('cut');
+
+            // Show next button
+            nextBtn.classList.remove('hidden');
+
+            // Create confetti
+            for(let i=0;i<30;i++){
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+                document.body.appendChild(confetti);
+
+                // Remove confetti after animation
+                setTimeout(() => confetti.remove(), 3000);
+            }
+
+            // Optional: Cake changes emoji to "cut" style after 1s
+            setTimeout(() => { cake.textContent = '🍰'; }, 500);
+        }
+    </script>
+</body>
+</html>
